@@ -42,33 +42,183 @@
     animation: rotatePetals 20s linear infinite;
     transform-origin: 400px 300px;
   }
+  
+  /* Animaciones flotantes para las imágenes del modal */
+  @keyframes modalFloat1 {
+    0%, 100% { transform: translateY(0px) rotate(5deg) scale(0); }
+    50% { transform: translateY(-15px) rotate(-5deg) scale(1); }
+  }
+  
+  @keyframes modalFloat2 {
+    0%, 100% { transform: translateY(0px) rotate(-3deg) scale(0); }
+    50% { transform: translateY(-20px) rotate(3deg) scale(1); }
+  }
+  
+  @keyframes modalFloat3 {
+    0%, 100% { transform: translateY(0px) rotate(7deg) scale(0); }
+    50% { transform: translateY(-12px) rotate(-7deg) scale(1); }
+  }
+  
+  @keyframes modalFloat4 {
+    0%, 100% { transform: translateY(0px) rotate(-5deg) scale(0); }
+    50% { transform: translateY(-18px) rotate(5deg) scale(1); }
+  }
+  
+  /* Animación para la imagen principal */
+  @keyframes mainImageFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% { 
+      transform: translateY(-8px) rotate(1deg) scale(1.02);
+    }
+    50% { 
+      transform: translateY(-12px) rotate(0deg) scale(1.03);
+    }
+    75% { 
+      transform: translateY(-8px) rotate(-1deg) scale(1.02);
+    }
+  }
+  
+  #modalImg.floating {
+    animation: mainImageFloat 6s ease-in-out infinite;
+  }
+  
+  /* Estilo para el mensaje romántico */
+  .romantic-message {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 20px;
+    border: 2px solid #ffcc33;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    color: #444;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    max-width: 400px;
+    z-index: 15;
+  }
+  
+  .romantic-message.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px);
+  }
+  
+  .romantic-message::before {
+    content: '💛';
+    margin-right: 8px;
+  }
+  
+  .romantic-message::after {
+    content: '💛';
+    margin-left: 8px;
+  }
+  
+  .modal-floating-img {
+    position: absolute;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+    border: 3px solid rgba(255,255,255,0.9);
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease, opacity 0.6s ease;
+  }
+  
+  .modal-floating-img.show {
+    opacity: 1;
+  }
+  
+  .modal-floating-img:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  }
+  
+  .modal-img1 {
+    width: 200px;
+    height: 150px;
+    top: 10%;
+    left: 10%;
+  }
+  
+  .modal-img1.show {
+    animation: modalFloat1 4s ease-in-out infinite;
+  }
+  
+  .modal-img2 {
+    width: 150px;
+    height: 150px;
+    top: 15%;
+    right: 15%;
+  }
+  
+  .modal-img2.show {
+    animation: modalFloat2 5s ease-in-out infinite;
+  }
+  
+  .modal-img3 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    left: 10%;
+  }
+  
+  .modal-img3.show {
+    animation: modalFloat3 4.5s ease-in-out infinite;
+  }
+  
+  .modal-img4 {
+    width: 150px;
+    height: 150px;
+    bottom: 15%;
+    right: 15%;
+  }
+  
+  .modal-img4.show {
+    animation: modalFloat4 3.8s ease-in-out infinite;
+  }
+  
+  .container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo para la firma */
+  .signature {
+    position: absolute;
+    bottom: -40px;
+    right: 20px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px;
+    color: #666;
+    font-style: italic;
+    opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+  }
+  
+  .signature::before {
+    content: '✨ ';
+    color: #ffcc33;
+  }
 </style>
 </head>
 <body>
 
 <h1>Para Lucianita 💛</h1>
+<h2>(Clickea el centro de la flor)</h2>
 
-<!-- modal de la foto -->
-<div id="modal" style="
-  position:fixed; inset:0; 
-  background:rgba(0,0,0,0.6); 
-  display:none; 
-  align-items:center; 
-  justify-content:center;
-  opacity:0;
-  transition: opacity 0.3s ease-in-out;">
-  <img id="modalImg" src="IMG_3218.jpg" style="
-    max-width:90%; 
-    max-height:90%; 
-    border:6px solid white; 
-    border-radius:12px;
-    transform: scale(0.3);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-</div>
-
-<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-  <!-- Definición de degradados -->
+<div class="container">
+  <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="petalGradient" cx="50%" cy="30%" r="80%">
       <stop offset="0%" stop-color="#fff7b0"/>
@@ -132,27 +282,109 @@
 
 </svg>
 
+  <!-- Firma del autor -->
+  <div class="signature">By Pedrin el Más Guapo OÑO</div>
+
+</div>
+
+<!-- Modal de la galería completa -->
+<div id="modal" style="
+  position:fixed; inset:0; 
+  background:rgba(0,0,0,0.8); 
+  display:none; 
+  align-items:center; 
+  justify-content:center;
+  opacity:0;
+  transition: opacity 0.3s ease-in-out;
+  overflow: hidden;">
+  
+  <!-- Imagen principal -->
+  <img id="modalImg" src="IMG_3218.jpg" style="
+    max-width:60%; 
+    max-height:70%; 
+    border:6px solid white; 
+    border-radius:12px;
+    transform: scale(0.3);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    z-index: 10;
+    position: relative;">
+    
+  <!-- Imágenes flotantes dentro del modal -->
+  <img src="FOT1.jpg" class="modal-floating-img modal-img1" alt="Foto 1">
+  <img src="FOT2.jpg" class="modal-floating-img modal-img2" alt="Foto 2">
+  <img src="FOT3.jpg" class="modal-floating-img modal-img3" alt="Foto 3">
+  <img src="FOT4.jpg" class="modal-floating-img modal-img4" alt="Foto 4">
+  
+  <!-- Mensaje romántico -->
+  <div class="romantic-message" id="romanticMessage">
+    Perdón por no dártelas en físico, te las debo jeje, pero te dejo esto aunque sea x hoy owo
+  </div>
+</div>
+
 <script>
   const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modalImg');
   const centro = document.getElementById('centroFlor');
+  const modalFloatingImgs = document.querySelectorAll('.modal-floating-img');
+  const romanticMessage = document.getElementById('romanticMessage');
 
-  centro.addEventListener('click', () => {
+  // Función para mostrar el modal con la galería completa
+  function showModal() {
     modal.style.display = 'flex';
-    // Pequeño retraso para que se vea la transición
+    
+    // Mostrar el modal y la imagen principal
     setTimeout(() => {
       modal.style.opacity = '1';
       modalImg.style.transform = 'scale(1)';
     }, 10);
-  });
+    
+    // Activar la animación flotante de la imagen principal
+    setTimeout(() => {
+      modalImg.classList.add('floating');
+    }, 500);
+    
+    // Mostrar las imágenes flotantes después de que aparezca la principal
+    setTimeout(() => {
+      modalFloatingImgs.forEach((img, index) => {
+        setTimeout(() => {
+          img.classList.add('show');
+        }, index * 300); // Aparecen con delay escalonado
+      });
+      
+      // Mostrar el mensaje romántico después de todas las imágenes
+      setTimeout(() => {
+        romanticMessage.classList.add('show');
+      }, 1500); // Aparece después de que todas las imágenes flotantes se muestren
+    }, 800);
+  }
 
-  modal.addEventListener('click', () => {
+  // Función para ocultar el modal
+  function hideModal() {
     modal.style.opacity = '0';
     modalImg.style.transform = 'scale(0.3)';
-    // Esperar a que termine la animación antes de ocultar
+    modalImg.classList.remove('floating');
+    
+    // Ocultar las imágenes flotantes y el mensaje
+    modalFloatingImgs.forEach(img => {
+      img.classList.remove('show');
+    });
+    romanticMessage.classList.remove('show');
+    
     setTimeout(() => {
       modal.style.display = 'none';
     }, 400);
+  }
+
+  // Click en el centro de la flor
+  centro.addEventListener('click', showModal);
+
+  // Click en el modal para cerrarlo (pero no en las imágenes)
+  modal.addEventListener('click', (e) => {
+    // Solo cerrar si se hace clic en el fondo, no en las imágenes
+    if (e.target === modal) {
+      hideModal();
+    }
   });
 </script>
 
